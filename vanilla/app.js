@@ -1,12 +1,28 @@
-const tareas = ["tarea1", "tarea2", "tarea3"];
+const tareas = [];
 
-for (let i = 0; i < tareas.length; i++) {
+const nuevatarea = document.getElementById("nuevaTarea");
+
+const botonagregar = document.getElementById("agregarTarea");
+
+const lista = document.getElementById("listaTareas");
 
 
-    const item = document.createElement('li')
-    item.innerText = tareas[i];
 
-    document.getElementById("listaTareas").appendChild(item);
+botonagregar.addEventListener("click", (event) => {
+    const inputvalido = nuevatarea.value.trim();
 
-}
+
+    if (inputvalido !== "") {
+        const li = document.createElement("li");
+        li.textContent = inputvalido;
+        lista.appendChild(li);
+        input.value = "";
+        input.focus();
+
+    }
+
+})
+
+
+
 
