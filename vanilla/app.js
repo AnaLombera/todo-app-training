@@ -2,13 +2,13 @@ const tareas = [];
 
 const nuevatarea = document.getElementById("nuevaTarea");
 
-const botonagregar = document.getElementById("agregarTarea");
-
 const lista = document.getElementById("listaTareas");
 
+const formulario = document.getElementById("add-new-task-form");
 
 
-botonagregar.addEventListener("click", (event) => {
+formulario.addEventListener("submit", (event) => {
+    event.preventDefault();
     const inputvalido = nuevatarea.value.trim();
 
 
@@ -16,8 +16,8 @@ botonagregar.addEventListener("click", (event) => {
         const li = document.createElement("li");
         li.textContent = inputvalido;
         lista.appendChild(li);
-        input.value = "";
-        input.focus();
+        nuevatarea.value = "";
+        nuevatarea.focus();
 
     }
 
