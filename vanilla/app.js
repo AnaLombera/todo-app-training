@@ -8,6 +8,7 @@ const formulario = document.getElementById("add-new-task-form");
 
 
 function mostrarTareas() {
+    lista.innerHTML = "";
     tareas.forEach((tarea) => {
         let li = document.createElement("li");
         li.textContent = tarea;
