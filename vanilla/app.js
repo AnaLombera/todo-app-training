@@ -1,6 +1,6 @@
 
-document.addEventListener('DOMContentLoaded', () => {
-    const tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+document.addEventListener('DOMContentLoaded', async() => {
+    let tareas =  [];
 
     const nuevatarea = document.getElementById("nuevaTarea");
 
@@ -13,9 +13,28 @@ document.addEventListener('DOMContentLoaded', () => {
         lista.innerHTML = "";
         tareas.forEach((tarea) => {
             let li = document.createElement("li");
-            li.textContent = tarea;
+            li.textContent = tarea.title;
             lista.appendChild(li);
         });
+    }
+
+    async function hacerLlamada () {
+        const apiURL = 'https://68bffd4a0b196b9ce1c2da70.mockapi.io/todos'
+
+        const response =  await fetch(apiURL, {
+            headers: {
+                'Accept': 'application/json',
+            }
+        })
+
+        /** @type Array* } **/
+        const toDos = await response.json()
+        console.log('API response: ', response, toDos)
+
+        toDos.forEach(function (value, index) {
+            tareas.push(value)
+        })
+
     }
 
     formulario.addEventListener("submit", (event) => {
@@ -34,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     });
+
+    await hacerLlamada();
 
     mostrarTareas();
 })
