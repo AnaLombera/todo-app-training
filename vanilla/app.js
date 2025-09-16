@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', async() => {
 
         /** @type Array* } **/
         const toDos = await response.json()
-        console.log('API response: ', response, toDos)
 
         toDos.forEach(function (value, index) {
             tareas.push(value)
@@ -37,14 +36,35 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     }
 
-    formulario.addEventListener("submit", (event) => {
+
+
+    formulario.addEventListener("submit", async (event) => {
         event.preventDefault();
         const inputvalido = nuevatarea.value.trim();
+        const apiURL = 'https://68bffd4a0b196b9ce1c2da70.mockapi.io/todos'
+        const tarea= {
+            title: inputvalido,
+            createdAt: new Date().toISOString(),
+        }
 
 
         if (inputvalido !== "") {
-            tareas.push(inputvalido); // añadir al array
-            localStorage.setItem("tareas", JSON.stringify(tareas));
+
+
+            const response = await fetch (apiURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify (tarea),
+            })
+
+            const tareaApi = await response.json()
+
+            console.log('hdsghds', tareaApi)
+
+            tareas.push (tareaApi);
+
             nuevatarea.value = "";
             nuevatarea.focus();
             mostrarTareas();
@@ -55,6 +75,8 @@ document.addEventListener('DOMContentLoaded', async() => {
     });
 
     await hacerLlamada();
+
+    console.log('tareas: ', tareas)
 
     mostrarTareas();
 })
