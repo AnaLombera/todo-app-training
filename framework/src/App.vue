@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BaseFooter from '@/components/BaseFooter.vue'
 import ToDoList from "@/components/ToDoList.vue";
+import ToDoForm from "@/components/ToDoForm.vue";
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import ToDoList from "@/components/ToDoList.vue";
   <p>Lista de teras</p>
 
   <ToDoList/>
+  <ToDoForm/>
 
   <BaseFooter />
 </template>
