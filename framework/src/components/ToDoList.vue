@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import {ref} from "vue";
-import type {ToDo} from "@/types.ts";
+import {useToDoState} from "@/composables/useToDoState.ts";
+
+const { toDoList } = useToDoState()
 
 
-
-const toDoList = ref<ToDo[]>([])
 </script>
 
 <template>

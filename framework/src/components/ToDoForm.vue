@@ -1,33 +1,33 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import type {ToDo} from "@/types.ts";
+import {useToDoState} from "@/composables/useToDoState.ts";
+
 
 const title = ref('')
 
-function addToDo() {
-  if (title.value.trim() !== "") {
-    const newTodo: ToDo = {
-      title: title.value,
+const {addToDo} = useToDoState()
 
-    };
-
-    //toDoList.value.push(newTodo)
-
-    title.value = ""
-  }
-}
 
 function onFormSubmit(event: SubmitEvent) {
   event.preventDefault();
 
-  addToDo()
+  if (title.value.trim() !== "") {
+    const newTodo: ToDo = {
+      title: title.value,
+    };
+    addToDo(newTodo)
+
+
+    title.value = ""
+  }
 }
 
 </script>
 
 <template>
   <form @submit="onFormSubmit">
-    <input placeholder="Escribir nueva tarea" v-model="title" type="text"/>
+    <input placeholder="Escribir nueva tarea" v-model="title" type="text" />
     <button>Agregar Tarea</button>
   </form>
 </template>
