@@ -14,7 +14,9 @@ function onFormSubmit(event: SubmitEvent) {
 
   if (title.value.trim() !== '') {
     const newTodo: ToDo = {
+      id: null,
       title: title.value,
+      createdAt: new Date().toISOString(),
     }
     store.addToDo(newTodo)
     title.value = ''

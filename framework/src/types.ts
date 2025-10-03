@@ -1,5 +1,5 @@
 export type ToDo = {
+  id: string | null
   title: string
-  id: string
   createdAt: string
 }
