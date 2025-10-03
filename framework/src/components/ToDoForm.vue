@@ -1,34 +1,28 @@
 <script setup lang="ts">
-import {ref} from "vue";
-import type {ToDo} from "@/types.ts";
-import {useToDoState} from "@/composables/useToDoState.ts";
+import { ref } from 'vue'
+import type { ToDo } from '@/types.ts'
 
+import { useToDosStore } from '@/stores/todos.ts'
 
 const title = ref('')
 const showError = ref(false)
 
-const {addToDo} = useToDoState()
-
-
+const store = useToDosStore()
 
 function onFormSubmit(event: SubmitEvent) {
-  event.preventDefault();
+  event.preventDefault()
 
-  if (title.value.trim() !== "") {
+  if (title.value.trim() !== '') {
     const newTodo: ToDo = {
       title: title.value,
-    };
-    addToDo(newTodo)
-    title.value = ""
+    }
+    store.addToDo(newTodo)
+    title.value = ''
     showError.value = false
-  }
-  else {
+  } else {
     showError.value = true
-
-
   }
 }
-
 </script>
 
 <template>

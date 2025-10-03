@@ -1,4 +1,3 @@
 export type ToDo = {
-  title: string;
-
+  title: string
 }
