@@ -2,11 +2,6 @@
 import BaseFooter from '@/components/BaseFooter.vue'
 import ToDoList from '@/components/ToDoList.vue'
 import ToDoForm from '@/components/ToDoForm.vue'
-import { useToDosStore } from '@/stores/todos.ts'
-
-const store = useToDosStore()
-
-store.loadToDos()
 </script>
 
 <template>
